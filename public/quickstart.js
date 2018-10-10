@@ -6,7 +6,7 @@
   var volumeIndicators = document.getElementById('volume-indicators');
 
   log('Requesting Capability Token...');
-  fetch('https://YOUR_FUNCTION_SUBDOMAIN_HERE.twil.io/capability-token')
+  fetch('https://ecru-stingray-4580.twil.io/capability-token')
     .then(function (response) {
       return response.json();
     })
@@ -43,6 +43,7 @@
 
       Twilio.Device.incoming(function (conn) {
         log('Incoming connection from ' + conn.parameters.From);
+        console.log('Incoming connection from ' + conn.parameters.From);
         var archEnemyPhoneNumber = '+12093373517';
 
         if (conn.parameters.From === archEnemyPhoneNumber) {
@@ -63,7 +64,7 @@
         document.getElementById('output-selection').style.display = 'block';
       }
     })
-    .fail(function () {
+    .catch(function () {
       log('Could not get a token from server!');
     });
 
